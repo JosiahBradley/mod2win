@@ -1,9 +1,9 @@
-mod-or-die
+mod2win
 =
 
 ## Watch out! There are snakes ahead.
 
-mod-or-die stylized as M.o.D is a python based game meant to teach basic modding skills and introduce people to Python.
+mod2win stylized as M2W is a python based game meant to teach basic modding skills and introduce people to Python.
 Python 3.7+ is required to run the game and a basic knowledge of programming is helpful but not required.
 
 
