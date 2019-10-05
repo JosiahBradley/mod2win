@@ -1,10 +1,13 @@
 import arcade
 from .BaseLevel import BaseLevel
 from ..tools.funcs import scale_generator
+from ..mods.level1 import Mod
 
 
 class L1(BaseLevel):
     def __init__(self, speed, title):
+        if Mod is not None:
+            speed = Mod.speed
         super().__init__(speed=speed, title=title)
         self.water_list = None
         self.exit = None

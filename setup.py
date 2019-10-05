@@ -18,7 +18,7 @@ setuptools.setup(
     version="0.0.1",
     entry_points={
         'console_scripts': [
-            'play = mod2die.levels.level_01:main',
+            'play = mod2win.levels.level_01:main',
         ]
     },
     package_dir={'': 'src'},
