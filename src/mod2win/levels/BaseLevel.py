@@ -41,7 +41,7 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
     Provides functions for drawing the ground and base functions to override.
     """
 
-    def __init__(self, title: str="LEVEL", gravity: float=1.0, speed: float=20.0, map: Dict[int, Dict]=None):
+    def __init__(self, title: str="LEVEL", gravity: float=1.0, speed: float=20.0, jump: float=10.0, map: Dict[int, Dict]=None):
         self.conf = Conf()
         super().__init__(self.conf.SCREEN_WIDTH, self.conf.SCREEN_HEIGHT, title)
 
@@ -62,7 +62,7 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
         self.map = map
         self.gravity = gravity
         self.speed = speed
-        self.jump_speed = speed * 2
+        self.jump_speed = jump
         self.physics_engine = None
 
         # Used to keep track of our scrolling
@@ -174,9 +174,6 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
         # Call update on all sprites (The sprites don't do much in this
         # example though.)
         self.physics_engine.update()
-
-        self.assets["player"].update()
-        self.assets["player"].update_animation()
 
         # --- Manage Scrolling ---
 
