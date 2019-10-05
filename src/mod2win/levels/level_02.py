@@ -39,7 +39,7 @@ class L2(BaseLevel):
             self.win()
 
         if Mod is not None:
-            Mod.gate(self.gate)
+            Mod.lift_gate(self.gate)
         for g in self.gate:
             if g.center_y > self.conf.TILE_RADIUS * 8:
                 g.center_y = self.conf.TILE_RADIUS * 8

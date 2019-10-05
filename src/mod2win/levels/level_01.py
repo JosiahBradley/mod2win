@@ -31,7 +31,6 @@ class L1(BaseLevel):
                 self.assets["water"].append(wall)
         door = self.tile_sprite('signExit')
         door.center_x = 100 * self.conf.TILE_RADIUS
-        # door.center_x = 10 * self.conf.TILE_RADIUS
         door.center_y = 185
         self.assets["statics"].append(door)
         self.exit = door

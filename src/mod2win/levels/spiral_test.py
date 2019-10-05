@@ -1,7 +1,8 @@
 import arcade
-from src.tools.funcs import rand_range, scale_generator
+from ..tools.funcs import rand_range, scale_generator
 import math
-from random import random
+from random import random, randint
+from .BaseLevel import Conf
 
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 1280
@@ -24,6 +25,8 @@ class Spiral(arcade.Window):
 
         arcade.set_background_color(arcade.csscolor.AQUAMARINE)
 
+        self.conf = Conf()
+
     def setup(self):
         """ Set up the game here. Call this function to restart the game. """
 
@@ -32,7 +35,7 @@ class Spiral(arcade.Window):
 
         r = 60
         for x in rand_range(0, 100 * math.pi, scale=math.pi / 5):
-            star = arcade.Sprite("../../resources/arcade/gold_1.png")
+            star = arcade.Sprite(self.conf.GLOBAL_RESOURCES + "/gold_" + str(randint(1, 4)) + ".png")
             star.center_x = SCREEN_WIDTH / 2 + r * math.cos(x)
             star.center_y = SCREEN_HEIGHT / 2 + r * math.sin(x)
             star.seed = scale_generator(x=random() * math.pi, offset=.5, step=.01)

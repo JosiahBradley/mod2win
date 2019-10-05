@@ -12,6 +12,7 @@ class Conf:
 
         # Resources
         self.FILE_ROOT = os.path.dirname(__file__)
+        self.GLOBAL_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/arcade/")
         self.SPRITE_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/arcade/character_sprites/")
         self.AUDIO_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/audio/")
         self.TILE_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/arcade/tiles/")
@@ -41,7 +42,7 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
     Provides functions for drawing the ground and base functions to override.
     """
 
-    def __init__(self, title: str="LEVEL", gravity: float=1.0, speed: float=20.0, jump: float=10.0, map: Dict[int, Dict]=None):
+    def __init__(self, title: str = "LEVEL", gravity: float = 1.0, speed: float = 20.0, jump: float = 10.0, level_map: Dict[int, Dict] = None):
         self.conf = Conf()
         super().__init__(self.conf.SCREEN_WIDTH, self.conf.SCREEN_HEIGHT, title)
 
@@ -59,7 +60,7 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
         self.jump_sound = None
 
         # Our physics engine
-        self.map = map
+        self.map = level_map
         self.gravity = gravity
         self.speed = speed
         self.jump_speed = jump
