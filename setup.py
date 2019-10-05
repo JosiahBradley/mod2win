@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 data_files = []
-for root, dirs, files in os.walk('src/mod_or_die/resources/arcade'):
+for root, dirs, files in os.walk('src/mod2die/resources/arcade'):
     ff = []
     for file in files:
         ff.append(os.path.join(root, file))
@@ -14,11 +14,11 @@ for root, dirs, files in os.walk('src/mod_or_die/resources/arcade'):
 setuptools.setup(
     author='Josiah Bradley',
     author_email='Josiah Bradley@gmail.com',
-    name="mod-or-die",
+    name="mod2win",
     version="0.0.1",
     entry_points={
         'console_scripts': [
-            'play = mod_or_die.levels.level_01:main',
+            'play = mod2die.levels.level_01:main',
         ]
     },
     package_dir={'': 'src'},

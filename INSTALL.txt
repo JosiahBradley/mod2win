@@ -7,7 +7,7 @@ pip install setuptools wheels
 pip install -r requirements.txt
 
 # This will build the game
-rm -rf build/* && python setup.py sdist bdist_wheel && python setup.py build && python setup.py install
+rm -rf build/* && python setup.py sdist bdist_wheel && python setup.py build && python setup.py install && python setup.py develop
 
 # This runs the game
 play
