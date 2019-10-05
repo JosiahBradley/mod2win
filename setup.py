@@ -19,6 +19,8 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'play = mod2win.levels.level_01:main',
+            'level1 = mod2win.levels.level_01:main',
+            'level2 = mod2win.levels.level_02:main',
         ]
     },
     package_dir={'': 'src'},
