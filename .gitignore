@@ -108,3 +108,6 @@ venv.bak/
 
 # MacOS bullshit
 .DS_Store
+
+# obfuscated files
+*.b64
