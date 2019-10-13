@@ -42,7 +42,10 @@ class L1(BaseLevel):
 
         for water in self.assets["water"]:
             water.center_x = water.start_x + next(water.waves) * self.conf.TILE_RADIUS
-            water.center_y += 0.18
+            if Mod is not None:
+                water.center_y += Mod.water
+            else:
+                water.center_y += 0.18
 
         if self.player.top < self.assets["water"].__getitem__(0).top:
             self.game_over()

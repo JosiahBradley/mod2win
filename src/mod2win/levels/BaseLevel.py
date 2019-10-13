@@ -16,6 +16,7 @@ class Conf:
         self.SPRITE_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/arcade/character_sprites/")
         self.AUDIO_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/audio/")
         self.TILE_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/arcade/tiles/")
+        self.OBJECT_RESOURCES = os.path.abspath(self.FILE_ROOT + "/../resources/arcade/objects/")
 
         # How many pixels to keep as a minimum margin between the character
         # and the edge of the screen.
@@ -128,6 +129,9 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
     def tile_sprite(self, name):
         return self.sprite(self.conf.TILE_RESOURCES, name)
 
+    def obj_sprite(self, name):
+        return self.sprite(self.conf.OBJECT_RESOURCES, name)
+
     @abstractmethod
     def on_draw(self):
         """ Render the screen. """
@@ -228,8 +232,8 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
                                 self.conf.SCREEN_HEIGHT + self.view_bottom)
 
     def game_over(self):
-        # self.physics_engine = None
         self.audio("gameover2")
+        # add transition animation so player knows they lost this level and are restarting.
         self.setup()
 
     @abstractmethod

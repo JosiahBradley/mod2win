@@ -21,6 +21,7 @@ setuptools.setup(
             'play = mod2win.levels.level_01:main',
             'level1 = mod2win.levels.level_01:main',
             'level2 = mod2win.levels.level_02:main',
+            'level3 = mod2win.levels.level_03:main',
             'spiral = mod2win.levels.spiral_test:main'
         ]
     },

@@ -1,6 +1,7 @@
 import arcade
 from .BaseLevel import BaseLevel
 from ..mods.level2 import Mod
+import time
 
 
 class L2(BaseLevel):
@@ -8,6 +9,8 @@ class L2(BaseLevel):
         super().__init__(speed=speed, title=title)
         self.exit = None
         self.gate = None
+        self.start = time.time()
+        self.duration = 30
 
     def draw_map(self):
         super().draw_map()
@@ -33,7 +36,8 @@ class L2(BaseLevel):
             return
 
         # Need game over condition, probabaly time based
-        # self.game_over()
+        if time.time() > self.start + self.duration:
+            self.game_over()
 
         if self.player.center_x > self.exit.center_x:
             self.win()
