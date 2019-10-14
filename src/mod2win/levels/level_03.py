@@ -1,6 +1,6 @@
 import arcade
-from .BaseLevel import BaseLevel
-from ..mods.level3 import Mod
+from mod2win.levels.BaseLevel import BaseLevel
+from mod2win.mods.level3 import  Mod
 import random
 import time
 
@@ -15,6 +15,7 @@ class L3(BaseLevel):
         self.score_msg = None
         self.pending_win = False
         self.pending_loss = False
+        self.goal = self.num_coins * 40
 
     def draw_map(self):
         super().draw_map()
@@ -54,8 +55,8 @@ class L3(BaseLevel):
         for coin in coins_hit_list:
             coin.kill()
             self.coin_count += 1
-            self.score += 5 if Mod is None else max(Mod.collect_coin(coin.coin_color), 50)
-            if self.coin_count == self.num_coins and self.score < 2000:
+            self.score += 5 if Mod is None else min(max(Mod.collect_coin(coin.coin_color), 5), 55)
+            if self.coin_count == self.num_coins and self.score < self.goal:
                 self.pending_loss = True
                 self.score_msg = time.time()
                 return
@@ -93,7 +94,7 @@ class L3(BaseLevel):
 
         if self.pending_win is True:
             arcade.draw_text(
-                "You need a score of at least 2000 to win!",
+                f"You need a score of at least {self.goal} to win!",
                 self.view_left + self.get_size()[0] * .15,
                 self.view_bottom + self.get_size()[1] * .5,
                 arcade.csscolor.DARK_ORANGE, 32
@@ -101,7 +102,7 @@ class L3(BaseLevel):
 
         if self.pending_loss is True:
             arcade.draw_text(
-                "You need a score of at least 2000 to win,\n but you ran out of coins.\n Restarting Level",
+                f"You need a score of at least {self.goal} to win,\n but you ran out of coins.\n Restarting Level",
                 self.view_left + self.get_size()[0] * .15,
                 self.view_bottom + self.get_size()[1] * .8,
                 arcade.csscolor.DARK_ORANGE, 32
@@ -109,7 +110,7 @@ class L3(BaseLevel):
 
     def win(self):
         # Check if win condition is met from Mod
-        if Mod is not None and Mod.win() is True and self.score > 2000:
+        if Mod is not None and Mod.win() is True and self.score > self.goal:
             super().win()
             self.audio("gameover1")
         else:

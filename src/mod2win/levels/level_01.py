@@ -1,7 +1,7 @@
 import arcade
-from .BaseLevel import BaseLevel
-from ..tools.funcs import scale_generator
-from ..mods.level1 import Mod
+from mod2win.levels.BaseLevel import BaseLevel
+from mod2win.tools.funcs import scale_generator
+from mod2win.mods.level1 import Mod
 
 
 class L1(BaseLevel):

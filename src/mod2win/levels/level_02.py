@@ -1,6 +1,6 @@
 import arcade
-from .BaseLevel import BaseLevel
-from ..mods.level2 import Mod
+from mod2win.levels.BaseLevel import BaseLevel
+from mod2win.mods.level2 import Mod
 import time
 
 
