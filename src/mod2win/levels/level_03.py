@@ -8,9 +8,15 @@ import time
 class L3(BaseLevel):
     def __init__(self, speed, title):
         super().__init__(speed=speed, title=title)
-        self.jump_speed = 5 if Mod is None else min(Mod.jump_speed, 35)
+        try:
+            self.jump_speed = max(min(Mod.jump_speed, 35), 5)
+        except AttributeError:
+            self.jump_speed = 5
         self.exit = None
-        self.num_coins = 5 if Mod is None else min(Mod.num_coins, 50)
+        try:
+            self.num_coins = max(min(Mod.num_coins, 50), 5)
+        except AttributeError:
+            self.num_coins = 5
         self.coin_count = 0
         self.score_msg = None
         self.pending_win = False
@@ -55,7 +61,10 @@ class L3(BaseLevel):
         for coin in coins_hit_list:
             coin.kill()
             self.coin_count += 1
-            self.score += 5 if Mod is None else min(max(Mod.collect_coin(coin.coin_color), 5), 55)
+            try:
+                self.score += max(min(Mod.collect_coin(coin.coin_color), 55), 5)
+            except AttributeError:
+                self.score += 5
             if self.coin_count == self.num_coins and self.score < self.goal:
                 self.pending_loss = True
                 self.score_msg = time.time()
