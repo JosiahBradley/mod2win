@@ -6,14 +6,20 @@ from mod2win.mods.level1 import Mod
 
 class L1(BaseLevel):
     def __init__(self, speed, title):
-        if Mod is not None:
+        try:
             speed = Mod.speed
+        except AttributeError:
+            pass
         super().__init__(speed=speed, title=title)
         self.water_list = None
         self.exit = None
 
     def draw_map(self):
         super().draw_map()
+        try:
+            arcade.set_background_color(Mod.color)
+        except (AttributeError, TypeError):
+            arcade.set_background_color((45, 155, 255))
         self.assets["water"] = arcade.SpriteList()
         for x in range(-10 * self.conf.TILE_RADIUS, 250 * self.conf.TILE_RADIUS, 2 * self.conf.TILE_RADIUS):
             wall = self.tile_sprite("waterTop_low")
@@ -42,10 +48,10 @@ class L1(BaseLevel):
 
         for water in self.assets["water"]:
             water.center_x = water.start_x + next(water.waves) * self.conf.TILE_RADIUS
-            if Mod is not None:
+            try:
                 water.center_y += Mod.water
-            else:
-                water.center_y += 0.18
+            except (AttributeError, TypeError):
+                water.center_y += 1
 
         if self.player.top < self.assets["water"].__getitem__(0).top:
             self.game_over()

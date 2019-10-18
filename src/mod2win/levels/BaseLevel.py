@@ -63,8 +63,14 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
         # Our physics engine
         self.map = level_map
         self.gravity = gravity
-        self.speed = speed
-        self.jump_speed = jump
+        if speed is not None:
+            self.speed = speed
+        else:
+            self.speed = 20.0
+        if jump is not None:
+            self.jump_speed = jump
+        else:
+            self.jump_speed = 10.0
         self.physics_engine = None
 
         # Used to keep track of our scrolling
@@ -147,9 +153,9 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
         score_text = f"Score: {self.score}"
         arcade.draw_text(
             score_text,
-            self.view_left + .8 * self.get_size()[0],
+            self.view_left + .75 * self.get_size()[0],
             self.view_bottom + .95 * self.get_size()[1],
-            arcade.csscolor.WHITE, 18
+            arcade.csscolor.BLACK, 36
         )
 
     def on_key_press(self, key, modifiers):
@@ -232,7 +238,7 @@ class BaseLevel(arcade.Window, metaclass=MetaLevel):
                                 self.conf.SCREEN_HEIGHT + self.view_bottom)
 
     def game_over(self):
-        self.audio("gameover2")
+        arcade.play_sound(self.audio("gameover2"))
         # add transition animation so player knows they lost this level and are restarting.
         self.setup()
 

@@ -12,6 +12,7 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'play = mod2win.levels.level_launcher:launch',
+            'compile = mod2win.levels.level_launcher:_compile',
             'scrub = mod2win.levels.level_launcher:scrub',
             'restore = mod2win.levels.level_launcher:restore',
             'spiral = mod2win.levels.spiral_test:main',
