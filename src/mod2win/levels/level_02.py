@@ -42,11 +42,15 @@ class L2(BaseLevel):
         if self.player.center_x > self.exit.center_x:
             self.win()
 
-        if Mod is not None:
+        try:
             Mod.lift_gate(self.gate)
+        except AttributeError:
+            pass
         for g in self.gate:
             if g.center_y > self.conf.TILE_RADIUS * 8:
                 g.center_y = self.conf.TILE_RADIUS * 8
+            if g.center_x > self.conf.TILE_RADIUS * 16:
+                g.center_x = self.conf.TILE_RADIUS * 16
 
     def on_draw(self):
         super().on_draw()
