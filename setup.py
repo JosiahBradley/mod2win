@@ -6,8 +6,9 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     author='Josiah Bradley',
-    author_email='Josiah Bradley@gmail.com',
+    author_email='JosiahBradley@gmail.com',
     name="mod2win",
+    url="https://github.com/JosiahBradley/mod2win",
     version="0.0.1",
     entry_points={
         'console_scripts': [
@@ -21,7 +22,6 @@ setuptools.setup(
     package_dir={'': 'src'},
     packages=setuptools.find_packages('src'),
     include_package_data=True,
-    # data_files=data_files,
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
